@@ -3,21 +3,24 @@ class Solution {
         // code here
         int n = arr.length;
         d = d%n;
-
-        int[] nums = new int [d];
-
-        for(int i = 0 ; i< d ; i++){
-            nums[i] = arr[i];
-        }
+        reverse(arr,0,d-1);
+        reverse(arr,d,n-1);
+        reverse(arr,0,n-1);
         
-        for(int i = d ; i<n ; i++){
-            arr[i-d] = arr[i];
+       
+    }
+    private static void swap(int [] arr , int i , int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    private static int[] reverse(int [] arr , int start , int end){
+        while(start < end){
+            swap(arr,start,end);
+            start++;
+            end--;
         }
-        int idx =0;
-        
-        for(int i = n-d ; i<n ; i++){
-            arr[i] = nums[idx];
-            idx++;
-        }
+        return arr;
     }
 }
